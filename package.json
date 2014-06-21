@@ -1,0 +1,26 @@
+{
+  "name": "lesscap",
+  "description": "Preprocessor for LESS",
+  "version": "0.0.",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^2.2.0"
+  },
+  "keywords": [
+    "less",
+    "css",
+    "preprocessor"
+  ],
+  "author": "muchweb",
+  "bugs": {
+    "url": "https://github.com/muchweb/lesscap/issues"
+  },
+  "bin": {
+    "lesscap": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muchweb/lesscap.git"
+  },
+  "license": "GPL-2.0"
+}
