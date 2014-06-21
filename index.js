@@ -6,11 +6,20 @@
 
 	var fs = require('fs');
 
-	module.exports.LESSCap = function () {
+	module.exports.LESSCap = function (path, callback) {
+		this.in_stream = this.initializeStream(path);
+		this.done = callback;
+		this.current_data = '';
 
+		// Should be replaced with writable stream
+		this.result = '';
 	};
 
-	module.exports.LESSCap.Parse = function (path) {
+	module.exports.LESSCap.process = function (path, callback) {
+		return new module.exports.LESSCap(path, callback);
+	};
+
+	module.exports.LESSCap.prototype.initializeStream = function (path) {
 		var readStream = fs.createReadStream(path),
 			data = '';
 
@@ -19,18 +28,31 @@
 		});
 
 		readStream.on('error', function(err) {
-			console.log('Erorr', err);
-		});
+			this.sourceError(err);
+		}.bind(this));
 
 		readStream.on('data', function (chunk) {
-			data += chunk;
-		});
+			this.sourceData(chunk);
+		}.bind(this));
 
 		readStream.on('end', function () {
-			console.log('The length was:', data);
-		});
+			this.sourceEnd();
+		}.bind(this));
 
+		return readStream;
+	};
 
+	module.exports.LESSCap.prototype.sourceData = function (chunk) {
+		this.current_data += chunk;
+	};
+
+	module.exports.LESSCap.prototype.sourceEnd = function () {
+		this.result = this.current_data;
+		this.done(null, this.result);
+	};
+
+	module.exports.LESSCap.prototype.sourceError = function (error) {
+		this.done(error);
 	};
 
 	module.exports.LESSCap.mixins = [
@@ -384,6 +406,13 @@
 	},
 	];
 
-	module.exports.LESSCap.Parse('test.lesscap');
+	module.exports.LESSCap.process('test.lesscap', function (error, result) {
+		if (error) {
+			console.log(error);
+			return;
+		}
+
+		console.log(result);
+	});
 
 }());
