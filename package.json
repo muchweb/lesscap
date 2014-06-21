@@ -1,7 +1,7 @@
 {
   "name": "lesscap",
   "description": "Automatically add LESSHat mixins",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "LESSCap.js",
   "dependencies": {
     "commander": "^2.2.0"
