@@ -1,11 +1,10 @@
-/*global exports: true */
+/*global module: true */
 /*global require: true */
 
 (function () {
 	'use strict';
 
-	var fs = require('fs'),
-		css = require('css');
+	var fs = require('fs');
 
 	module.exports.LESSCap = function (path, callback, prefix) {
 		if (typeof prefix === 'undefined')
@@ -25,8 +24,7 @@
 	};
 
 	module.exports.LESSCap.prototype.initializeStream = function (path) {
-		var readStream = fs.createReadStream(path),
-			data = '';
+		var readStream = fs.createReadStream(path);
 
 		readStream.on('open', function () {
 			// console.log('Starting');
@@ -56,13 +54,11 @@
 				
 			if (start_position >= 0) {
 				var start_position_mod = start_position + 1,
-					start_position_end = start_position_mod + start_search.length,
 					center_search = ':',
 					center_position = line.indexOf(center_search),
 					center_position_end = center_position + center_search.length,
 					end_search = ';',
-					end_position = line.lastIndexOf(end_search),
-					end_position_end = end_position + end_search.length;
+					end_position = line.lastIndexOf(end_search);
 
 				line_out = line.substr(0, start_position_mod);
 				line_out += '.';
