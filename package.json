@@ -1,8 +1,8 @@
 {
   "name": "lesscap",
-  "description": "Preprocessor for LESS",
+  "description": "Automatically add LESSHat mixins",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "LESSCap.js",
   "dependencies": {
     "commander": "^2.2.0"
   },
@@ -23,7 +23,7 @@
     "url": "https://github.com/muchweb/lesscap.git"
   },
   "scripts": {
-    "test": "node ./index.js > parsed.less && lessc ./parsed.less > compiled.css && cat compiled.css"
+    "test": "lesscap ./*.lesscap > parsed.less && lessc ./parsed.less > compiled.css && cat compiled.css"
   },
   "license": "GPL-2.0"
 }

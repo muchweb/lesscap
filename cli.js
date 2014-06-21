@@ -7,16 +7,22 @@
 	'use strict';
 
 	var program = require('commander'),
-		LESSCap = require('./index.js'),
+		LESSCap = require('./LESSCap.js').LESSCap,
 		path = process.cwd(),
 		package_json = require('./package.json');
 
 	program
-		.usage('[options] <working directory>')
+		.usage('[options] <file ...>')
 		.version(package_json.version)
-		.option('-f, --file [filename]', 'specify file name')
 		.parse(process.argv);
 
-	new LESSCap(program.file);
+	for (var i = 0; i < program.args.length; i++)
+		LESSCap.process(program.args[i], function (error, result) {
+			if (error) {
+				console.log(error);
+				return;
+			}
+			console.log(result);
+		});
 
 }());

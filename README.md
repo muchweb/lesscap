@@ -2,9 +2,22 @@
 
 Automatically adding LESSHat mixins to LESS. Also known as the first CSS pre-preprocessor.
 
+## Installation
+
+```bash
+npm install -g lesscap
+```
+
 ## Usage
 
-Input:
+```bash
+lesscap ./*.lesscap > styles.less
+lessc styles.less > styles.css
+```
+
+## Example
+
+`test.lesscap` input:
 
 ```
 @import "./lesshat-prefixed";
