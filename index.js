@@ -29,7 +29,7 @@
 			data = '';
 
 		readStream.on('open', function () {
-			console.log('Starting');
+			// console.log('Starting');
 		});
 
 		readStream.on('error', function(err) {

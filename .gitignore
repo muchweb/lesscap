@@ -1,1 +1,4 @@
 node_modules/
+parsed.less
+compiled.css
+lesshat-prefixed.less
