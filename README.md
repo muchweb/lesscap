@@ -24,13 +24,13 @@ lessc styles.less > styles.css
 
 body {
 	font-size: 10px;
-	.lh-keyframes(~'appearance, 0% { opacity: 0.5; } 100% { opacity: 1; }');
-	.lh-animation(appearance 2s ease);
+	keyframes: appearance, 0% { opacity: 0.5; } 100% { opacity: 1; };
+	animation: appearance 2s ease;
 }
 
 a {
 	color: blue;
-	.lh-transition(color 1s ease);
+	transition: color 1s ease;
 	
 	&:hover {
 		color: lightblue;
