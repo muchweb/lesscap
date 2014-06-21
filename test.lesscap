@@ -1,3 +1,14 @@
 body {
 	font-size: 10px;
+	keyframes: appearance 0% { opacity: 0.5; } 100% { opacity: 1; };
+	animation: appearance 2s ease;
+}
+
+a {
+	color: blue;
+	transition: color 1s ease;
+	
+	&:hover {
+		color: lightblue;
+	}
 }
