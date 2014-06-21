@@ -1,53 +1,53 @@
 # lesscap
 
-Automatically adding LESSHat mixins to LESS. Also known as the first CSS pre-precocessor.
+Automatically adding LESSHat mixins to LESS. Also known as the first CSS pre-preprocessor.
 
 ## Usage
 
 Input:
 
 ```
-	@import "./lesshat-prefixed";
+@import "./lesshat-prefixed";
 
-	body {
-		font-size: 10px;
-		keyframes: appearance, 0% { opacity: 0.5; } 100% { opacity: 1; };
-		animation: appearance 2s ease;
-	}
+body {
+	font-size: 10px;
+	keyframes: appearance, 0% { opacity: 0.5; } 100% { opacity: 1; };
+	animation: appearance 2s ease;
+}
 
-	a {
-		color: blue;
-		transition: color 1s ease;
-		
-		&:hover {
-			color: lightblue;
-		}
+a {
+	color: blue;
+	transition: color 1s ease;
+	
+	&:hover {
+		color: lightblue;
 	}
+}
 ```
 
-Will produce this LESSHat output:
+Will produce this LESS output:
 
 
 ```
-	@import "./lesshat-prefixed";
+@import "./lesshat-prefixed";
 
-	body {
-		font-size: 10px;
-		.lh-keyframes(~'appearance, 0% { opacity: 0.5; } 100% { opacity: 1; }');
-		.lh-animation(appearance 2s ease);
-	}
+body {
+	font-size: 10px;
+	.lh-keyframes(~'appearance, 0% { opacity: 0.5; } 100% { opacity: 1; }');
+	.lh-animation(appearance 2s ease);
+}
 
-	a {
-		color: blue;
-		.lh-transition(color 1s ease);
-		
-		&:hover {
-			color: lightblue;
-		}
+a {
+	color: blue;
+	.lh-transition(color 1s ease);
+	
+	&:hover {
+		color: lightblue;
 	}
+}
 ```
 
-Which will compile into this:
+Which will compile into this CSS:
 
 ```css
 body {
@@ -76,3 +76,8 @@ a:hover {
 }
 
 ```
+
+## Requirements
+
+ - Indent your style with tabs
+ - One property per line
