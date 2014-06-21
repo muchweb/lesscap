@@ -10,9 +10,23 @@ npm install -g lesscap
 
 ## Usage
 
+### Command line
+
 ```bash
 lesscap ./*.lesscap > styles.less
 lessc styles.less > styles.css
+```
+
+### Code
+
+```
+require('lesscap').LESSCap.process('test.lesscap', function (error, result) {
+	if (error) {
+		console.log(error);
+		return;
+	}
+	console.log(result);
+});
 ```
 
 ## Example
