@@ -1,4 +1,6 @@
-# lesscap
+# lesscap [![Dependency Status](https://gemnasium.com/muchweb/lesscap.svg)](https://gemnasium.com/muchweb/lesscap) [![NPM version](https://badge.fury.io/js/lesscap.svg)](http://badge.fury.io/js/lesscap)
+
+![lesscap](https://raw.githubusercontent.com/muchweb/lesscap/master/logo.png)
 
 Add LESSHat mixins to your LESS. Also known as the first CSS pre-preprocessor.
 
