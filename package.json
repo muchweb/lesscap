@@ -1,7 +1,7 @@
 {
   "name": "lesscap",
   "description": "Preprocessor for LESS",
-  "version": "0.0.",
+  "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
     "commander": "^2.2.0"
