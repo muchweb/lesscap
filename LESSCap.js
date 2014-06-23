@@ -4,45 +4,32 @@
 (function () {
 	'use strict';
 
-	var fs = require('fs');
+	var stream = require('stream'),
+		util = require('util');
 
-	module.exports.LESSCap = function (path, callback, prefix) {
-		if (typeof prefix === 'undefined')
-			prefix = 'lh-';
+	module.exports.LESSCap = function (options) {
+		stream.Duplex.call(this, options);
 
-		this.in_stream = this.initializeStream(path);
-		this.done = callback;
 		this.current_data = '';
-		this.prefix = prefix;
-
-		// Should be replaced with writable stream
-		this.result = '';
+		this.prefix = 'lh-';
 	};
 
-	module.exports.LESSCap.process = function (path, callback) {
-		return new module.exports.LESSCap(path, callback);
+	util.inherits(module.exports.LESSCap, stream.Duplex);
+
+	module.exports.LESSCap.prototype._write = function (chunk) {
+		var string = chunk.toString('utf8');
+
+		this.current_data += string;
+
+		var parts = this.current_data.split('\n');
+
+		while (parts.length > 1)
+			this.processLine(parts.shift());
+
+		this.current_data = parts[0];
 	};
 
-	module.exports.LESSCap.prototype.initializeStream = function (path) {
-		var readStream = fs.createReadStream(path);
-
-		readStream.on('open', function () {
-			// console.log('Starting');
-		});
-
-		readStream.on('error', function(err) {
-			this.sourceError(err);
-		}.bind(this));
-
-		readStream.on('data', function (chunk) {
-			this.sourceData(chunk);
-		}.bind(this));
-
-		readStream.on('end', function () {
-			this.sourceEnd();
-		}.bind(this));
-
-		return readStream;
+	module.exports.LESSCap.prototype._read = function () {
 	};
 
 	module.exports.LESSCap.prototype.processLine = function (line) {
@@ -75,31 +62,7 @@
 			}	
 		}
 
-		this.result += line_out + '\n';
-	};
-
-	module.exports.LESSCap.prototype.sourceData = function (chunk) {
-		this.current_data += chunk;
-
-		var parts = this.current_data.split('\n');
-
-		while (parts.length > 1)
-			this.processLine(parts.shift());
-
-		this.current_data = parts[0];
-	};
-
-	module.exports.LESSCap.prototype.sourceEnd = function () {
-		var parts = this.current_data.split('\n');
-
-		while (parts.length > 0)
-			this.processLine(parts.shift());
-
-		this.done(null, this.result);
-	};
-
-	module.exports.LESSCap.prototype.sourceError = function (error) {
-		this.done(error);
+		this.push(line_out + '\n');
 	};
 
 	module.exports.LESSCap.mixins = [

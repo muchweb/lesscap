@@ -8,21 +8,22 @@
 
 	var program = require('commander'),
 		LESSCap = require('./LESSCap.js').LESSCap,
-		path = process.cwd(),
-		package_json = require('./package.json');
+		package_json = require('./package.json'),
+		fs = require('fs');
 
 	program
-		.usage('[options] <file ...>')
+		.usage('[file ...]')
 		.version(package_json.version)
 		.parse(process.argv);
 
-	for (var i = 0; i < program.args.length; i++)
-		LESSCap.process(program.args[i], function (error, result) {
-			if (error) {
-				console.log(error);
-				return;
-			}
-			console.log(result);
-		});
+	if (program.args.length > 0)
+		for (var i = 0; i < program.args.length; i++)
+			fs.createReadStream(program.args[i])
+				.pipe(new LESSCap())
+				.pipe(process.stdout);
+	else
+		process.stdin
+			.pipe(new LESSCap())
+			.pipe(process.stdout);
 
 }());

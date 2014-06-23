@@ -15,20 +15,16 @@ npm install -g lesscap
 ### Command line
 
 ```bash
-lesscap ./*.lesscap > styles.less
+lesscap < ./test.lesscap > styles.less
 lessc styles.less > styles.css
 ```
 
 ### Code
 
 ```
-require('lesscap').LESSCap.process('test.lesscap', function (error, result) {
-	if (error) {
-		console.log(error);
-		return;
-	}
-	console.log(result);
-});
+fs.createReadStream('input.less')
+	.pipe(new LESSCap())
+	.pipe(fs.createWriteStream('output.less');
 ```
 
 ## Example
