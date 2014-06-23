@@ -10,8 +10,14 @@
 	module.exports.LESSCap = function (options) {
 		stream.Duplex.call(this, options);
 
+		if (typeof options === 'undefined')
+			options = {};
+
+		if (typeof options.prefix === 'undefined');
+			options.prefix = 'lh-';
+
 		this.current_data = '';
-		this.prefix = 'lh-';
+		this.prefix = options.prefix;
 	};
 
 	util.inherits(module.exports.LESSCap, stream.Duplex);
