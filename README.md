@@ -2,7 +2,7 @@
 
 ![lesscap](https://raw.githubusercontent.com/muchweb/lesscap/master/logo.png)
 
-Add LESSHat mixins to your LESS. Also known as the first CSS pre-preprocessor.
+Add [LESSHat](http://lesshat.madebysource.com/) [mixins](https://github.com/madebysource/lesshat/blob/master/README.md#list-of-mixins) to your [LESS](http://lesscss.org/). Helpful if you are planning to convert your existing code to make use of LESSHat. Also known as the first CSS pre-preprocessor.
 
 ## Installation
 
@@ -15,8 +15,8 @@ npm install -g lesscap
 ### Command line
 
 ```bash
-lesscap < ./test.lesscap > styles.less
-lessc styles.less > styles.css
+lesscap < ./input.less > output.less
+lessc output.less > styles.css
 ```
 
 ### Code
@@ -29,7 +29,7 @@ fs.createReadStream('input.less')
 
 ## Example
 
-`test.lesscap` input:
+`input.less` input:
 
 ```
 @import "./lesshat-prefixed";
@@ -55,7 +55,7 @@ div {
 }
 ```
 
-Will produce this LESS output:
+Will produce this `output.less`:
 
 
 ```
@@ -82,7 +82,7 @@ div {
 }
 ```
 
-Which will compile into this CSS:
+Which will compile into this `styles.css`:
 
 ```css
 body {

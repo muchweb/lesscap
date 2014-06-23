@@ -1,6 +1,6 @@
 {
   "name": "lesscap",
-  "description": "Automatically add LESSHat mixins",
+  "description": "Automatically add LESSHat mixins to existing LESS",
   "version": "0.0.3",
   "main": "LESSCap.js",
   "dependencies": {
@@ -9,7 +9,8 @@
   "keywords": [
     "less",
     "css",
-    "preprocessor"
+    "preprocessor",
+    "prepreprocessor"
   ],
   "author": "muchweb",
   "bugs": {
