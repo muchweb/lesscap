@@ -30,7 +30,7 @@
       <section>
         <p><img src="https://raw.githubusercontent.com/muchweb/lesscap/master/logo.png" alt="lesscap"></p>
 
-<p>Add LESSHat mixins to your LESS. Also known as the first CSS pre-preprocessor.</p>
+<p>Add <a href="http://lesshat.madebysource.com/">LESSHat</a> <a href="https://github.com/madebysource/lesshat/blob/master/README.md#list-of-mixins">mixins</a> to your <a href="http://lesscss.org/">LESS</a>. Helpful if you are planning to convert your existing code to make use of LESSHat. Also known as the first CSS pre-preprocessor.</p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -44,26 +44,22 @@
 <h3>
 <a name="command-line" class="anchor" href="#command-line"><span class="octicon octicon-link"></span></a>Command line</h3>
 
-<div class="highlight highlight-bash"><pre>lesscap ./*.lesscap &gt; styles.less
-lessc styles.less &gt; styles.css
+<div class="highlight highlight-bash"><pre>lesscap &lt; ./input.less &gt; output.less
+lessc output.less &gt; styles.css
 </pre></div>
 
 <h3>
 <a name="code" class="anchor" href="#code"><span class="octicon octicon-link"></span></a>Code</h3>
 
-<pre><code>require('lesscap').LESSCap.process('test.lesscap', function (error, result) {
-    if (error) {
-        console.log(error);
-        return;
-    }
-    console.log(result);
-});
+<pre><code>fs.createReadStream('input.less')
+    .pipe(new LESSCap())
+    .pipe(fs.createWriteStream('output.less');
 </code></pre>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<p><code>test.lesscap</code> input:</p>
+<p><code>input.less</code> input:</p>
 
 <pre><code>@import "./lesshat-prefixed";
 
@@ -88,7 +84,7 @@ div {
 }
 </code></pre>
 
-<p>Will produce this LESS output:</p>
+<p>Will produce this <code>output.less</code>:</p>
 
 <pre><code>@import "./lesshat-prefixed";
 
@@ -113,7 +109,7 @@ div {
 }
 </code></pre>
 
-<p>Which will compile into this CSS:</p>
+<p>Which will compile into this <code>styles.css</code>:</p>
 
 <div class="highlight highlight-css"><pre><span class="nt">body</span> <span class="p">{</span>
   <span class="k">font-size</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
