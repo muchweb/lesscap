@@ -24,7 +24,7 @@
     "url": "https://github.com/muchweb/lesscap.git"
   },
   "scripts": {
-    "test": "lesscap ./*.lesscap > parsed.less && lessc ./parsed.less > compiled.css && cat compiled.css"
+    "test": "lesscap test.less > parsed.less && lessc ./parsed.less > compiled.css && cat compiled.css"
   },
   "license": "GPL-2.0"
 }
